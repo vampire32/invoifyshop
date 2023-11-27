@@ -1,23 +1,23 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import languageModel from "../../../utils/languageModel";
 import { fetchCart } from "../../store/Cart";
 import { fetchCompareProducts } from "../../store/compareProduct";
 import { setupAction } from "../../store/websiteSetup";
 import { fetchWishlist } from "../../store/wishlistData";
-import languageModel from "../../../utils/languageModel";
-import TawkTo from "tawkto-react";
-import LoginContext from "../Contexts/LoginContexts";
-import Script from "next/script";
-import Consent from "../Helpers/Consent";
+
 import { useRouter } from "next/router";
-import apiRequest from "../../../utils/apiRequest";
+import Script from "next/script";
 import { toast } from "react-toastify";
+import apiRequest from "../../../utils/apiRequest";
 import auth from "../../../utils/auth";
+import hexToRgb from "../../../utils/hexToRgb";
 import LoginWidget from "../Auth/Login/LoginWidget";
 import SignupWidget from "../Auth/Signup/SignupWidget";
 import VerifyWidget from "../Auth/Signup/VerifyWidget";
-import hexToRgb from "../../../utils/hexToRgb";
+import LoginContext from "../Contexts/LoginContexts";
+import Consent from "../Helpers/Consent";
 
 function DefaultLayout({ children }) {
   const router = useRouter();
@@ -94,15 +94,15 @@ function DefaultLayout({ children }) {
     }
   }, [websiteSetup]);
 
-  useEffect(() => {
-    if (twkData) {
-      let tawk = new TawkTo(`${twkData.widgetId}`, `${twkData.propertyId}`);
+  // useEffect(() => {
+  //   if (twkData) {
+  //     let tawk = new TawkTo(`${twkData.widgetId}`, `${twkData.propertyId}`);
 
-      tawk.onStatusChange((status) => {
-        console.log(status);
-      });
-    }
-  }, [twkData]);
+  //     tawk.onStatusChange((status) => {
+  //       console.log(status);
+  //     });
+  //   }
+  // }, [twkData]);
   useEffect(() => {
     if (fbPixexl) {
       import("react-facebook-pixel")
